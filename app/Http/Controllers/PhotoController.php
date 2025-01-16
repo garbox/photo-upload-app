@@ -11,8 +11,6 @@ class PhotoController extends Controller
 {
     public function showForm($session = null){
                 // Get the session ID
-                dump($session);
-                dump(session()->getId());
                 if($session != null){
                     session()->setId($session);
                 }
