@@ -17,7 +17,7 @@ class PhotoController extends Controller
                 else{
                     session()->getId();
                 }
-                
+                dump(session()->getId());
                 //get photos if any
                 $photosData = Photo::where('session_id', session()->getId())->get();
                 // Redirect to another route and append session ID as a query parameter
