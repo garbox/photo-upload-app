@@ -27,7 +27,7 @@ class PhotoController extends Controller
     public function upload(Request $request){
         // Validate the uploaded file
         $request->validate([
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:5000',
         ]);
 
         // Store the image
