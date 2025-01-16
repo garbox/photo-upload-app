@@ -11,12 +11,15 @@ class PhotoController extends Controller
 {
     public function showForm($session = null){
                 // Get the session ID
+                dump($session);
+                dump(session()->getId());
                 if($session != null){
                     session()->setId($session);
                 }
                 else{
                     session()->getId();
                 }
+
                 //get photos if any
                 $photosData = Photo::where('session_id', session()->getId())->get();
                 // Redirect to another route and append session ID as a query parameter
