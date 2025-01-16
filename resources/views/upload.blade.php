@@ -1,3 +1,4 @@
+@dump(session()->getId())
 <!DOCTYPE html>
 <html lang="en">
 <head>
