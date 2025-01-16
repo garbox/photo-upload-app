@@ -61,7 +61,7 @@
         <div class="d-none d-md-block">
         <h3 class="text-center">Photo on your phone? Scan Here!</h3>
         <div class="d-flex justify-content-center">
-          {{ QRCode::url("/mobile/" . session()->getID())->setsize(5)->svg() }}
+          {{ QRCode::url(route('mobile')."/" . session()->getID())->setsize(5)->svg() }}
         </div>
       </div>
         
