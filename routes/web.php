@@ -8,5 +8,5 @@ Route::get('/{session?}', [PhotoController::class, 'showForm']);
 Route::post('/upload', [PhotoController::class, 'upload']);
 Route::get('/photos', function() {
     $photos = Photo::where('session_id', session()->getId())->get();
-    return response()->json($photos);
+    return json($photos);
 });
