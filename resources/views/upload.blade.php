@@ -92,38 +92,6 @@
 <!-- Bootstrap JS and dependencies -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-<script>
-function fetchPhotos() {
-    fetch('/photos')
-        .then(response => response.json()) // Parse the response as JSON
-        .then(data => {
-            const photoGallery = document.getElementById('image-container');
-            photoGallery.innerHTML = ''; // Clear the gallery before adding new photos
 
-            // Loop through each photo and create a container with an image and caption
-            data.forEach(photo => {
-                // Create a div for the photo item
-                const photoDiv = document.createElement('div');
-                photoDiv.classList.add('image-item');
-                
-                // Create the image element
-                const img = document.createElement('img');
-                img.src = '{{asset('storage/photos/')}}' +'/' + photo.filename;  // Assuming 'file_path' contains the image path
-                img.alt = 'Uploaded Photo';
-                img.classList.add('uploaded-image');
-                
-                // Append the image and caption to the photo div
-                photoDiv.appendChild(img);
-
-                // Append the photo div to the gallery
-                photoGallery.appendChild(photoDiv);
-            });
-        })
-        .catch(error => console.error('Error fetching photos:', error));
-}
-
-// Fetch photos every 5 seconds
-setInterval(fetchPhotos, 5000);
-</script>
 </body>
 </html>
