@@ -43,7 +43,7 @@
           <div class="mb-3">
             <label for="photo" class="form-label">Select Photo</label>
             <input class="form-control" type="file" id="photo" name="photo" required>
-            <div class="form-text">Max file size: 10MB. Supported formats: JPG, PNG, JPEG.</div>
+            <div class="form-text">Max file size: 5MB. Supported formats: JPG, PNG, JPEG.</div>
           </div>
           
           <button type="submit" class="btn btn-primary w-100">Upload</button>
