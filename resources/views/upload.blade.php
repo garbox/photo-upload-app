@@ -46,7 +46,11 @@
             <div class="form-text">Max file size: 5MB. Supported formats: JPG, PNG, JPEG.</div>
           </div>
           
-          <button type="submit" class="btn btn-primary w-100">Upload</button>
+          <button onclick="Processing()" type="submit" id="submit" class="btn btn-primary w-100">Upload</button>
+          <button class="btn btn-primary w-100 d-none" type="button" id="processing" disabled>
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              Processing...
+          </button>
           @if (session('success'))
               <div class="alert alert-success mt-3">
                   {{ session('success') }}
@@ -96,6 +100,10 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 <script>
+function Processing() {
+  document.getElementById('processing').classList.remove('d-none');
+  document.getElementById('submit').classList.add('d-none');
+}
 function fetchPhotos() {
     fetch('/photos')
         .then(response => response.json()) // Parse the response as JSON
