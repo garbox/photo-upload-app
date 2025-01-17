@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Jobs\RemoveExpiredPhotos;
+use App\Models\Photo;
 
 class RemoveExpiredPhotosCommand extends Command
 {
@@ -16,7 +16,8 @@ class RemoveExpiredPhotosCommand extends Command
 
     public function handle(){
         // Dispatch the job when this command is run
-        RemoveExpiredPhotos::dispatch();
-        $this->info('Expired photos removal job has been dispatched!');
+        $test = Photo::photoDelete();
+
+        $this->info($test);
     }
 }
