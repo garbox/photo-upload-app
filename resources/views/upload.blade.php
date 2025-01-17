@@ -76,7 +76,7 @@
     </div>
 
     <!-- Column for Uploaded Images (Visible only on md and larger screens) -->
-    <div class="col-md-6 d-none d-md-block">
+    <div class="col-md-6">
       <div class="container">
         <h3 class="text-center mb-4">Uploaded Photos</h3>
         
@@ -104,6 +104,7 @@ function Processing() {
   document.getElementById('processing').classList.remove('d-none');
   document.getElementById('submit').classList.add('d-none');
 }
+
 function fetchPhotos() {
     fetch('/photos')
         .then(response => response.json()) // Parse the response as JSON
