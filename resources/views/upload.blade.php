@@ -22,7 +22,7 @@
     }
     .uploaded-image {
       max-width: 100%;
-      max-height: 200px;
+      max-height: 300px;
       object-fit: cover;
       border-radius: 5px;
     }
@@ -52,7 +52,7 @@
                   {{ session('success') }}
               </div>
           @endif
-          
+
           @if ($errors->any())
           <div class="alert alert-danger mt-3">
             @foreach ($errors->get('photo') as $error)
