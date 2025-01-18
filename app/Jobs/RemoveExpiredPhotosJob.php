@@ -6,9 +6,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;  // Added this import for logging
 use App\Models\Photo;
 
-class RemoveExpiredPhotosJob extends Jobs
+class RemoveExpiredPhotosJob implements ShouldQueue // Implementing ShouldQueue directly
 {
     use Queueable;
 
@@ -24,12 +25,12 @@ class RemoveExpiredPhotosJob extends Jobs
 
         // Loop through the old records and delete associated files
         foreach ($oldRecords as $record) {
-            // Delete the file from storage (assuming the file path is stored in 'file_path')
+            // Delete the file from storage (assuming the file path is stored in 'filename')
             if (Storage::exists('photos/' . $record->filename)) {
                 Storage::delete('photos/' . $record->filename);
-            }
-            else{
-                Log::info('no file found');
+            } else {
+                // Logging when no file is found
+                Log::info('No file found for photo with filename: ' . $record->filename);
             }
 
             // Delete the record from the database
