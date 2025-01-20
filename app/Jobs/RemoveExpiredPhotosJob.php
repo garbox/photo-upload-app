@@ -37,5 +37,4 @@ class RemoveExpiredPhotosJob implements ShouldQueue // Implementing ShouldQueue 
                         $record->delete();
                     }
         }
-    }
 }
