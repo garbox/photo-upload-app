@@ -29,8 +29,8 @@ class RemoveExpiredPhotosCommand extends Command
             // Loop through the old records and delete associated files
             foreach ($oldRecords as $record) {
                 // Delete the file from storage (assuming the file path is stored in 'filename')
-                if (Storage::exists('photos/' . $record->filename)) {
-                    Storage::delete('photos/' . $record->filename);
+                if (Storage::disk('public')->exists('photos/' . $record->filename)) {
+                    Storage::disk('public')->delete('photos/' . $record->filename);
                 } else {
                     // Logging when no file is found
                     Log::info('No file found for photo with filename: ' . $record->filename);
