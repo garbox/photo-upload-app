@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Folder;
+use App\Models\User;
 
 return new class extends Migration
 {
@@ -15,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('filename');
             $table->string('session_id');
+            $table->foreignIdFor(User::class)->refrecnes('id')->on('users');
+            $table->foreignIdFor(Folder::class)->refrecnes('id')->on('folders');
             $table->timestamp('created_at')->useCurrent();  
             $table->timestamp('updated_at')->useCurrent(); 
         });
