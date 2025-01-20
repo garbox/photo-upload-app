@@ -5,6 +5,7 @@ namespace App\Console;
 use App\Jobs\RemoveExpiredPhotos; // Import your job here
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Jobs\RemoveExpiredPhotosJob;
 
 class Kernel extends ConsoleKernel
 {
@@ -16,7 +17,7 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule){
         // Schedule the job to run every hour RemoveExpiredPhotosCommand
-        $schedule->command('photos:remove-expired')->hourly();
+        $schedule->job(new RemoveExpiredPhotosJob)->hourly();
     }
 
     protected function commands(){
