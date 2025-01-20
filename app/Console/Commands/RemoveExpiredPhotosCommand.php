@@ -15,15 +15,25 @@ class RemoveExpiredPhotosCommand extends Command
         parent::__construct();
     }
 
-    public function handle()
-    {
-        try {
-            // Dispatch the job to the queue
-            RemoveExpiredPhotosJob::dispatch();
+    public function handle(){
+            // Get the current time minus 2 hours
+            $twoHoursAgo = Carbon::now()->subHours(2);
 
-            $this->info('Expired photos removal job has been dispatched successfully!');
-        } catch (\Exception $e) {
-            $this->error('Error dispatching the photo removal job: ' . $e->getMessage());
+            // Query for records older than 2 hours
+            $oldRecords = Photo::where('created_at', '<', $twoHoursAgo)->get();
+
+            // Loop through the old records and delete associated files
+            foreach ($oldRecords as $record) {
+                // Delete the file from storage (assuming the file path is stored in 'filename')
+                if (Storage::exists('photos/' . $record->filename)) {
+                    Storage::delete('photos/' . $record->filename);
+                } else {
+                    // Logging when no file is found
+                    Log::info('No file found for photo with filename: ' . $record->filename);
+                }
+
+                // Delete the record from the database
+                $record->delete();
+            }
         }
-    }
 }
