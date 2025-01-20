@@ -118,10 +118,15 @@ function fetchPhotos() {
                 const photoDiv = document.createElement('div');
                 photoDiv.classList.add('image-item');
                 
+
+                // Create an anchor tag <a> to wrap the image
+                const link = document.createElement('a');
+                link.href = '{{asset('storage/photos/')}}' +'/' + photo.filename;  // Link to the photo's detail page (change URL as needed)
+                link.target = '_blank';  // Optionally open the link in a new tab
+
                 // Create the image element
                 const img = document.createElement('img');
                 img.src = '{{asset('storage/photos/')}}' +'/' + photo.filename;  // Assuming 'file_path' contains the image path
-                img.alt = 'Uploaded Photo';
                 img.classList.add('uploaded-image');
                 
                 // Append the image and caption to the photo div
