@@ -4,6 +4,10 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Jobs\RemoveExpiredPhotosJob;
+use Carbon\Carbon;
+use App\Models\Photo;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log; 
 
 class RemoveExpiredPhotosCommand extends Command
 {
