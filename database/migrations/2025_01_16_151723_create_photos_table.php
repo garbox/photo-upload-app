@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('filename');
             $table->string('session_id');
-            $table->foreignIdFor(User::class)->refrecnes('id')->on('users');
-            $table->foreignIdFor(Folder::class)->refrecnes('id')->on('folders');
+            $table->foreignIdFor(User::class)->refrecnes('id')->on('users')->default(1);
+            $table->foreignIdFor(Folder::class)->refrecnes('id')->on('folders')->default(1);;
             $table->timestamp('created_at')->useCurrent();  
             $table->timestamp('updated_at')->useCurrent(); 
         });
